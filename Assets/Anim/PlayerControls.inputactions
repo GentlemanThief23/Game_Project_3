@@ -16,9 +16,9 @@
                 },
                 {
                     "name": "Camera",
-                    "type": "Button",
+                    "type": "PassThrough",
                     "id": "1affa869-1de5-4dc8-99f5-8ec7c2bf6c50",
-                    "expectedControlType": "",
+                    "expectedControlType": "Vector2",
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": false
