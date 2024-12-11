@@ -40,24 +40,9 @@ namespace SG
             float delta = Time.deltaTime;
 
             inputHandler.TickInput(delta);
+            HandleMovement(delta);
 
-            moveDirection = cameraObject.forward * inputHandler.vertical;
-            moveDirection += cameraObject.right * inputHandler.horizontal;
-            moveDirection.Normalize();
-            moveDirection.y = 0;
-
-            float speed = movementSpeed;
-            moveDirection *= speed;
-
-            Vector3 projectedVelocity = Vector3.ProjectOnPlane(moveDirection, normalVector);
-            rigidbody.velocity = projectedVelocity;
-
-            animatorHandler.UpdateAnimatorValues(inputHandler.moveAmount, 0);
-
-            if (animatorHandler.canRotate)
-            {
-                HandleRotation(delta);
-            }
+           
         }
 
 
@@ -85,6 +70,27 @@ namespace SG
             Quaternion targetRotation = Quaternion.Slerp(myTransform.rotation, tr, rs * delta);
 
             myTransform.rotation = targetRotation;  
+        }
+
+        public void HandleMovement(float delta)
+        {
+            moveDirection = cameraObject.forward * inputHandler.vertical;
+            moveDirection += cameraObject.right * inputHandler.horizontal;
+            moveDirection.Normalize();
+            moveDirection.y = 0;
+
+            float speed = movementSpeed;
+            moveDirection *= speed;
+
+            Vector3 projectedVelocity = Vector3.ProjectOnPlane(moveDirection, normalVector);
+            rigidbody.velocity = projectedVelocity;
+
+            animatorHandler.UpdateAnimatorValues(inputHandler.moveAmount, 0);
+
+            if (animatorHandler.canRotate)
+            {
+                HandleRotation(delta);
+            }
         }
 
         #endregion
