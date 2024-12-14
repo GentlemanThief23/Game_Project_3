@@ -10,7 +10,7 @@ namespace SG
         Transform cameraObject;
         InputHandler inputHandler;
         Vector3 moveDirection;
-
+        CameraHandler cameraHandler;
         [HideInInspector]
         public Transform myTransform;
         [HideInInspector]

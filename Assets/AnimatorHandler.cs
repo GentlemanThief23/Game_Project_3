@@ -10,6 +10,9 @@ namespace SG
         int vertical;
         int horizontal;
         public bool canRotate;
+        public bool isInteracting;
+
+
 
         public void OnServerInitialized()
         {
@@ -72,6 +75,13 @@ namespace SG
 
             anim.SetFloat(vertical, v, 0.1f, Time.deltaTime);
             anim.SetFloat(horizontal, h, 0.1f, Time.deltaTime);
+        }
+
+        public void PlayTargetAnimation(string targetAnim, bool isInteracting)
+        {
+            anim.applyRootMotion = isInteracting;
+            anim.SetBool("isInteracting", isInteracting);
+            anim.CrossFade(targetAnim, 0.2f);
         }
 
         public void CamRotate()

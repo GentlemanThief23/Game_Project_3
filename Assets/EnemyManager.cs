@@ -17,6 +17,7 @@ namespace SG
         public float detectionRadius = 20;
         public float maximumDetectionAngle = 50;
         public float minimumDetectionAngle = -50;
+        internal bool isPerforminAction;
 
         private void Awake()
         {
@@ -27,6 +28,15 @@ namespace SG
         private void Update()
         {
             HandleStateMachine(); 
+            HandleCurrentAction();
+        }
+
+        private void HandleCurrentAction()
+        {
+            if (enemyLocomotionManager.currentTarget == null)
+            {
+                enemyLocomotionManager.HandleDetection();
+            }
         }
 
         private void HandleStateMachine()
